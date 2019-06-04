@@ -8,6 +8,7 @@ total_months = 0
 sum_profit = 0
 change = 0
 Diff_Profits = []
+Dates = []
 
 # Open and read the CSV file
 with open(file_name) as csv_file:
@@ -19,13 +20,15 @@ with open(file_name) as csv_file:
 
     first_row = next(csv_reader)
     diff_profit = int(first_row[1])
+    sum_profit = int(first_row[1])
 
 # loop to count dates
     for row in csv_reader:
 
         Date = row[0]
         total_months = total_months + 1
-        final_count = total_months
+        final_month_count = total_months + 1
+        Dates.append(row[0])
 
 # loop to sum profit
 
@@ -42,18 +45,33 @@ with open(file_name) as csv_file:
 #Greatest increase in profits, decrease and average change - outside of the loop
 
 final_change = sum(Diff_Profits)/(total_months)
+
 greatest_increase = max(Diff_Profits)
+increase_index = Diff_Profits.index(greatest_increase)
+increase_date = Dates[increase_index]
+
 greatest_decrease = min(Diff_Profits)
+decrease_index = Diff_Profits.index(greatest_decrease)
+decrease_date = Dates[decrease_index]
 
 
-print()
 print("Financial Analysis")
 print("---------------------------------------------------------------------")
-print("Total Months:"+ " "+ str(total_months))
+print("Total Months:"+ " "+ str(final_month_count))
 print("Total:" + " $"+ str(final_profit))
 print("Average Change:" + " $" + str(round(final_change,2)))
-print("Greatest Increase in Profits:" +  " ($" +str(greatest_increase)+")")
-print("Greatest Decrease in Profits:" + " ($" +str(greatest_decrease)+")")
+print("Greatest Increase in Profits: " +str(increase_date) +  " ($" +str(greatest_increase)+")")
+print("Greatest Decrease in Profits: " +str(decrease_date) + " ($" +str(greatest_decrease)+")")
 
+output = open('pybank.txt','w')
 
+output.write("Financial Analysis")
+output.write("---------------------------------------------------------------------")
+output.write("Total Months:"+ " "+ str(final_month_count))
+output.write("Total:" + " $"+ str(final_profit))
+output.write("Average Change:" + " $" + str(round(final_change,2)))
+output.write("Greatest Increase in Profits: " +str(increase_date) +  " ($" +str(greatest_increase)+")")
+output.write("Greatest Decrease in Profits: " +str(decrease_date) + " ($" +str(greatest_decrease)+")")
+
+output.close()
 
