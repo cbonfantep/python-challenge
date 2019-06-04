@@ -1,55 +1,59 @@
 
+#Import the necessary modules
 import csv
 
 file_name = "/Users/camila.bonfante/Desktop/Bootcamp/w3_w4_Python/Homework/03-Python_Homework_PyBank_Resources_budget_data.csv"
 
+total_months = 0
+sum_profit = 0
+change = 0
+Diff_Profits = []
+
+# Open and read the CSV file
 with open(file_name) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
+# Reading the header row
     header = next(csv_reader)
-    csv_converted = [[row[0], int(row[1])] for row in csv_reader]
+# New file without header, convert Profit to integer
+    # csv_reader = [[row[0], int(row[1])] for row in csv_reader]
 
+    first_row = next(csv_reader)
+    diff_profit = int(first_row[1])
 
 # loop to count dates
-    i = 0
-
-    for row in csv_converted:
+    for row in csv_reader:
 
         Date = row[0]
-        i = i + 1
-        final_count = i
+        total_months = total_months + 1
+        final_count = total_months
 
 # loop to sum profit
 
-    sum_profit = 0
-
-    for row in csv_converted:
-        Profit = row[1]
-
+        Profit = int(row[1])
         sum_profit = Profit + sum_profit
         final_profit = sum_profit
 
-# loop to calc average of wins/losses
+# loop to calc average of wins/losses and create a list called Diff_Profits to store the numbers
 
-diff_profit = 0
+        change = int(row[1])-diff_profit
+        Diff_Profits.append(change)
+        diff_profit = int(row[1])
 
-    for row in csv_converted:
-        Profit = row[1]
+#Greatest increase in profits, decrease and average change - outside of the loop
 
-        diff_profit = Profit - sum_profit
-
-
-Average = sum_profit/final_count
-
+final_change = sum(Diff_Profits)/(total_months)
+greatest_increase = max(Diff_Profits)
+greatest_decrease = min(Diff_Profits)
 
 
 print()
 print("Financial Analysis")
 print("---------------------------------------------------------------------")
-print("Total Months:"+ " "+ str(i))
+print("Total Months:"+ " "+ str(total_months))
 print("Total:" + " $"+ str(final_profit))
-print("Average  Change:" + " " + str(Average))
-# print("Greatest Increase in Profits:" +  " " +)
-# print("Greatest Decrease in Profits:" + " " +)
+print("Average Change:" + " $" + str(round(final_change,2)))
+print("Greatest Increase in Profits:" +  " ($" +str(greatest_increase)+")")
+print("Greatest Decrease in Profits:" + " ($" +str(greatest_decrease)+")")
 
 
 
