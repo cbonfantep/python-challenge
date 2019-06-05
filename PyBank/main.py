@@ -65,13 +65,13 @@ print("Greatest Decrease in Profits: " +str(decrease_date) + " ($" +str(greatest
 
 output = open('pybank.txt','w')
 
-output.write("Financial Analysis")
-output.write("---------------------------------------------------------------------")
-output.write("Total Months:"+ " "+ str(final_month_count))
-output.write("Total:" + " $"+ str(final_profit))
-output.write("Average Change:" + " $" + str(round(final_change,2)))
-output.write("Greatest Increase in Profits: " +str(increase_date) +  " ($" +str(greatest_increase)+")")
-output.write("Greatest Decrease in Profits: " +str(decrease_date) + " ($" +str(greatest_decrease)+")")
+output.write("\nFinancial Analysis")
+output.write("\n---------------------------------------------------------------------")
+output.write("\nTotal Months:"+ " "+ str(final_month_count))
+output.write("\nTotal:" + " $"+ str(final_profit))
+output.write("\nAverage Change:" + " $" + str(round(final_change,2)))
+output.write("\nGreatest Increase in Profits: " +str(increase_date) +  " ($" +str(greatest_increase)+")")
+output.write("\nGreatest Decrease in Profits: " +str(decrease_date) + " ($" +str(greatest_decrease)+")")
 
 output.close()
 

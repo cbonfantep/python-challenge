@@ -26,7 +26,7 @@ with open(file_name) as csv_file:
 # The total number of votes cast
         count_voters = count_voters + 1
         Voter_ID_count.append(count_voters)
-        final_count = count_voters
+
 
 # A complete list of candidates who received votes - SEEMS LIKE THERE IS AN EASIER WAY TO DO THIS? Count.
 
@@ -37,30 +37,33 @@ with open(file_name) as csv_file:
 
         if row['Candidate'] == Unique_Candidate_list[0]:
             count_voters0 = count_voters0 + 1
-            Candidate_0.append(count_voters0)
 
         elif row['Candidate'] == Unique_Candidate_list[1]:
             count_voters1 = count_voters1 + 1
-            Candidate_0.append(count_voters1)
 
         elif row['Candidate'] == Unique_Candidate_list[2]:
             count_voters2 = count_voters2 + 1
-            # Candidate_2.append(count_voters2)
-            Candidate_0.append(count_voters2)
+
         elif row['Candidate'] == Unique_Candidate_list[3]:
             count_voters3 = count_voters3 + 1
-            # Candidate_3.append(count_voters3)
-            Candidate_0.append(count_voters3)
+
         else:
             print(" ")
 
+final_count = count_voters
+
+Candidate_0.append(count_voters0)
+Candidate_0.append(Unique_Candidate_list[0])
+Candidate_0.append(count_voters1)
+Candidate_0.append(Unique_Candidate_list[1])
+Candidate_0.append(count_voters2)
+Candidate_0.append(Unique_Candidate_list[2])
+Candidate_0.append(count_voters3)
+Candidate_0.append(Unique_Candidate_list[3])
+
 # WHY CAN'T I GET THE NAME - SEEMS LIKE THERE IS AN EASIER WAY TO DO THIS?
 Winner = max(count_voters0,count_voters1,count_voters2,count_voters3)
-Winner_Index = Candidate_0.index(Winner)
-Winner_Name = Candidate_0[Winner_Index]
-
-# print(Winner, Winner_Index, Winner_Name)
-
+Winner_Name = Winner
 
 # WHY IS IT ROUNDING DIFFERENTLY EVERY TIME IT RUNS?
 perc_0 = round((count_voters0/final_count*100),3)
@@ -85,16 +88,16 @@ print("--------------------------------------")
 # WHY THE LINES ARE NOT SPLITTED OUT/FORMATTED LIKE I OUTLINED BELOW
 output = open('pypoll.txt','w')
 
-output.write("Election Results")
-output.write("--------------------------------------")
-output.write(f'Total Votes: {final_count}')
-output.write("--------------------------------------")
-output.write(f'{Unique_Candidate_list[0]}: {perc_0}% ({count_voters0})')
-output.write(f'{Unique_Candidate_list[1]}: {perc_1}% ({count_voters1})')
-output.write(f'{Unique_Candidate_list[2]}: {perc_2}%  ({count_voters2})')
-output.write(f'{Unique_Candidate_list[3]}: {perc_3}% ({count_voters3})')
-output.write("--------------------------------------")
-output.write(f'Winner: {Winner_Name}')
-output.write("--------------------------------------")
+output.write("\nElection Results")
+output.write("\n--------------------------------------")
+output.write(f'\nTotal Votes: {final_count}')
+output.write("\n--------------------------------------")
+output.write(f'\n{Unique_Candidate_list[0]}: {perc_0}% ({count_voters0})')
+output.write(f'\n{Unique_Candidate_list[1]}: {perc_1}% ({count_voters1})')
+output.write(f'\n{Unique_Candidate_list[2]}: {perc_2}%  ({count_voters2})')
+output.write(f'\n{Unique_Candidate_list[3]}: {perc_3}% ({count_voters3})')
+output.write("\n--------------------------------------")
+output.write(f'\nWinner: {Winner_Name}')
+output.write("\n--------------------------------------")
 
 output.close()
